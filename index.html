@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Site educacional sobre perfis de investidor, tipos de investimentos, comparações e simulação de rendimentos."
+    />
+    <title>Finanças na Prática</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Finanças na Prática">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>Finanças na Prática</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Seções do site">
+        <a href="#perfis">Perfis</a>
+        <a href="#investimentos">Investimentos</a>
+        <a href="#glossario">Glossário</a>
+        <a href="#prazos">Prazos</a>
+        <a href="#comparacao">Diferenças</a>
+        <a href="#graficos">Gráficos</a>
+        <a href="#ferramentas">Ferramentas</a>
+        <a href="#erros">Erros</a>
+        <a href="#simulador">Simulação</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-overlay">
+          <p class="eyebrow">Educação financeira para sala de aula</p>
+          <h1 id="hero-title">Finanças na Prática</h1>
+          <p class="hero-copy">
+            Um guia visual sobre perfis de investidor, alternativas de investimento
+            e o efeito dos juros compostos ao longo do tempo.
+          </p>
+
+          <div class="hero-actions" aria-label="Atalhos principais">
+            <a class="primary-action" href="#simulador">Abrir simulador</a>
+            <a class="secondary-action" href="#comparacao">Comparar opções</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="snapshot" aria-label="Resumo do conteúdo">
+        <article>
+          <span class="metric">3</span>
+          <strong>Perfis</strong>
+          <p>Conservador, moderado e arrojado.</p>
+        </article>
+        <article>
+          <span class="metric">10+</span>
+          <strong>Alternativas</strong>
+          <p>Renda fixa, renda variável, fundos e reserva.</p>
+        </article>
+        <article>
+          <span class="metric">12</span>
+          <strong>Termos</strong>
+          <p>Glossário com linguagem simples.</p>
+        </article>
+        <article>
+          <span class="metric">4</span>
+          <strong>Ferramentas</strong>
+          <p>Reserva, metas, inflação e rendimentos.</p>
+        </article>
+      </section>
+
+      <section class="section" id="perfis">
+        <div class="section-heading">
+          <p class="eyebrow">Primeira decisão</p>
+          <h2>Perfis de investidor</h2>
+          <p>
+            O perfil ajuda a equilibrar prazo, risco, liquidez e tranquilidade.
+            Ele não é uma etiqueta fixa: muda com objetivos, renda e experiência.
+          </p>
+        </div>
+
+        <div class="profile-layout">
+          <div class="profile-cards" aria-label="Tipos de perfil">
+            <article class="info-card">
+              <span class="card-icon conservative" aria-hidden="true"></span>
+              <h3>Conservador</h3>
+              <p>
+                Prioriza segurança e previsibilidade. Costuma preferir reserva de
+                emergência, Tesouro Selic, CDBs com liquidez e produtos protegidos.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <span class="card-icon balanced" aria-hidden="true"></span>
+              <h3>Moderado</h3>
+              <p>
+                Aceita oscilações controladas para buscar retornos maiores. Combina
+                renda fixa, fundos, ETFs e uma parcela menor de renda variável.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <span class="card-icon bold" aria-hidden="true"></span>
+              <h3>Arrojado</h3>
+              <p>
+                Tolera volatilidade e pensa no longo prazo. Pode incluir ações,
+                fundos imobiliários, ETFs setoriais e ativos de maior risco.
+              </p>
+            </article>
+          </div>
+
+          <aside class="quiz-panel" aria-labelledby="quiz-title">
+            <div>
+              <p class="eyebrow">Teste rápido</p>
+              <h3 id="quiz-title">Qual perfil combina com o objetivo?</h3>
+            </div>
+
+            <fieldset class="quiz-group" data-question="goal">
+              <legend>Objetivo principal</legend>
+              <button type="button" data-score="1">Preservar dinheiro</button>
+              <button type="button" data-score="2">Crescer com equilíbrio</button>
+              <button type="button" data-score="3">Buscar alto crescimento</button>
+            </fieldset>
+
+            <fieldset class="quiz-group" data-question="term">
+              <legend>Prazo do investimento</legend>
+              <button type="button" data-score="1">Até 1 ano</button>
+              <button type="button" data-score="2">De 2 a 5 anos</button>
+              <button type="button" data-score="3">Mais de 5 anos</button>
+            </fieldset>
+
+            <fieldset class="quiz-group" data-question="risk">
+              <legend>Reação a uma queda temporária</legend>
+              <button type="button" data-score="1">Resgataria rápido</button>
+              <button type="button" data-score="2">Reavaliaria com calma</button>
+              <button type="button" data-score="3">Manteria a estratégia</button>
+            </fieldset>
+
+            <div class="quiz-result" aria-live="polite">
+              <span>Resultado</span>
+              <strong id="profileResult">Responda às três perguntas</strong>
+              <p id="profileAdvice">
+                O resultado aparecerá aqui quando todas as escolhas forem marcadas.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section investment-band" id="investimentos">
+        <div class="section-heading">
+          <p class="eyebrow">Mapa de opções</p>
+          <h2>Tipos de investimentos</h2>
+          <p>
+            Cada alternativa resolve um problema diferente: guardar com liquidez,
+            proteger da inflação, buscar renda recorrente ou tentar maior valorização.
+          </p>
+        </div>
+
+        <div class="filters" aria-label="Filtros de investimento">
+          <button type="button" class="filter-btn active" data-filter="todos">Todos</button>
+          <button type="button" class="filter-btn" data-filter="fixa">Renda fixa</button>
+          <button type="button" class="filter-btn" data-filter="variavel">Renda variável</button>
+          <button type="button" class="filter-btn" data-filter="fundos">Fundos e ETFs</button>
+        </div>
+
+        <div class="investment-grid" id="investmentGrid">
+          <article class="investment-card" data-category="fixa">
+            <span class="risk low">Baixo risco</span>
+            <h3>Tesouro Selic</h3>
+            <p>Usado em objetivos de curto prazo e reserva. Acompanha a taxa básica da economia.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Alta</dd></div>
+              <div><dt>Prazo</dt><dd>Curto a médio</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="fixa">
+            <span class="risk low">Baixo a médio</span>
+            <h3>CDB</h3>
+            <p>Empréstimo ao banco. Pode ter liquidez diária ou prazo fechado, com proteção do FGC.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Variável</dd></div>
+              <div><dt>Prazo</dt><dd>Curto a longo</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="fixa">
+            <span class="risk low">Baixo a médio</span>
+            <h3>LCI e LCA</h3>
+            <p>Letras ligadas aos setores imobiliário e agrícola. Para pessoa física, costumam ser isentas de IR.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Menor</dd></div>
+              <div><dt>Prazo</dt><dd>Médio</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="fixa">
+            <span class="risk medium">Médio</span>
+            <h3>Tesouro IPCA+</h3>
+            <p>Protege poder de compra ao combinar inflação mais uma taxa fixa.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Média</dd></div>
+              <div><dt>Prazo</dt><dd>Longo</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="fundos">
+            <span class="risk medium">Médio</span>
+            <h3>Fundos de investimento</h3>
+            <p>Gestores profissionais aplicam em uma carteira. Existem fundos simples e fundos sofisticados.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Variável</dd></div>
+              <div><dt>Prazo</dt><dd>Variável</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="fundos">
+            <span class="risk medium">Médio a alto</span>
+            <h3>ETFs</h3>
+            <p>Fundos negociados em bolsa que replicam índices, setores ou estratégias.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Alta</dd></div>
+              <div><dt>Prazo</dt><dd>Médio a longo</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="variavel">
+            <span class="risk high">Alto risco</span>
+            <h3>Ações</h3>
+            <p>Participação em empresas. Podem valorizar, pagar dividendos e também cair bastante.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Alta</dd></div>
+              <div><dt>Prazo</dt><dd>Longo</dd></div>
+            </dl>
+          </article>
+
+          <article class="investment-card" data-category="variavel">
+            <span class="risk high">Alto risco</span>
+            <h3>Fundos imobiliários</h3>
+            <p>Investem em imóveis ou títulos do setor. Podem distribuir rendimentos mensais.</p>
+            <dl>
+              <div><dt>Liquidez</dt><dd>Média</dd></div>
+              <div><dt>Prazo</dt><dd>Longo</dd></div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="section glossary-section" id="glossario">
+        <div class="section-heading">
+          <p class="eyebrow">Glossário financeiro</p>
+          <h2>Termos que aparecem em quase toda conversa sobre dinheiro</h2>
+          <p>
+            Entender o vocabulário evita decisões no escuro. Estes conceitos
+            ajudam a comparar investimentos com mais calma.
+          </p>
+        </div>
+
+        <div class="glossary-grid" aria-label="Glossário de termos financeiros">
+          <article class="term-card">
+            <span>01</span>
+            <h3>Liquidez</h3>
+            <p>Facilidade de transformar um investimento em dinheiro disponível.</p>
+          </article>
+
+          <article class="term-card">
+            <span>02</span>
+            <h3>Rentabilidade</h3>
+            <p>Quanto o dinheiro rendeu em um período, antes ou depois de custos.</p>
+          </article>
+
+          <article class="term-card">
+            <span>03</span>
+            <h3>Inflação</h3>
+            <p>Aumento geral dos preços, que reduz o poder de compra do dinheiro.</p>
+          </article>
+
+          <article class="term-card">
+            <span>04</span>
+            <h3>Selic</h3>
+            <p>Taxa básica de juros da economia, usada como referência no Brasil.</p>
+          </article>
+
+          <article class="term-card">
+            <span>05</span>
+            <h3>CDI</h3>
+            <p>Referência comum para comparar CDBs e outros produtos de renda fixa.</p>
+          </article>
+
+          <article class="term-card">
+            <span>06</span>
+            <h3>Risco</h3>
+            <p>Possibilidade de o resultado ser diferente do esperado, inclusive negativo.</p>
+          </article>
+
+          <article class="term-card">
+            <span>07</span>
+            <h3>Diversificação</h3>
+            <p>Distribuir o dinheiro em alternativas diferentes para reduzir dependência.</p>
+          </article>
+
+          <article class="term-card">
+            <span>08</span>
+            <h3>Juros compostos</h3>
+            <p>Rendimento sobre o valor inicial e também sobre rendimentos anteriores.</p>
+          </article>
+
+          <article class="term-card">
+            <span>09</span>
+            <h3>FGC</h3>
+            <p>Fundo que protege alguns investimentos bancários dentro de limites definidos.</p>
+          </article>
+
+          <article class="term-card">
+            <span>10</span>
+            <h3>Volatilidade</h3>
+            <p>Intensidade das oscilações de preço de um ativo ao longo do tempo.</p>
+          </article>
+
+          <article class="term-card">
+            <span>11</span>
+            <h3>Dividendos</h3>
+            <p>Parte do lucro distribuída por algumas empresas aos acionistas.</p>
+          </article>
+
+          <article class="term-card">
+            <span>12</span>
+            <h3>Imposto de renda</h3>
+            <p>Tributo que pode incidir sobre ganhos, dependendo do investimento.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section timeline-section" id="prazos">
+        <div class="section-heading">
+          <p class="eyebrow">Linha do tempo</p>
+          <h2>Investimentos por prazo do objetivo</h2>
+          <p>
+            Antes de pensar no maior rendimento, vale perguntar quando o dinheiro
+            será usado. O prazo muda completamente a escolha.
+          </p>
+        </div>
+
+        <div class="timeline" aria-label="Linha do tempo dos investimentos">
+          <article class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="timeline-period">Até 1 ano</p>
+            <h3>Curto prazo</h3>
+            <p>Priorize liquidez e estabilidade para evitar vender algo em queda.</p>
+            <strong>Exemplos: Tesouro Selic, CDB com liquidez diária, reserva.</strong>
+          </article>
+
+          <article class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="timeline-period">De 1 a 5 anos</p>
+            <h3>Médio prazo</h3>
+            <p>É possível buscar retorno maior, mas ainda com cuidado com oscilações.</p>
+            <strong>Exemplos: CDBs de prazo fechado, LCI, LCA, Tesouro IPCA+ curto.</strong>
+          </article>
+
+          <article class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="timeline-period">Mais de 5 anos</p>
+            <h3>Longo prazo</h3>
+            <p>O tempo ajuda a lidar com volatilidade e dá espaço para diversificar.</p>
+            <strong>Exemplos: ETFs, ações, FIIs, Tesouro IPCA+ longo.</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="comparacao">
+        <div class="section-heading">
+          <p class="eyebrow">Diferenças importantes</p>
+          <h2>Compare antes de escolher</h2>
+          <p>
+            O melhor investimento depende do objetivo. Uma reserva pede liquidez;
+            aposentadoria pede prazo; renda variável pede tolerância a oscilações.
+          </p>
+        </div>
+
+        <div class="comparison-table" role="region" aria-label="Tabela comparativa" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>Investimento</th>
+                <th>Risco</th>
+                <th>Liquidez</th>
+                <th>Indicado para</th>
+                <th>Ponto de atenção</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Poupança</th>
+                <td>Baixo</td>
+                <td>Alta</td>
+                <td>Organização inicial</td>
+                <td>Rentabilidade costuma ser limitada.</td>
+              </tr>
+              <tr>
+                <th>Tesouro Selic</th>
+                <td>Baixo</td>
+                <td>Alta</td>
+                <td>Reserva e curto prazo</td>
+                <td>Pode ter imposto sobre lucro.</td>
+              </tr>
+              <tr>
+                <th>CDB</th>
+                <td>Baixo a médio</td>
+                <td>Variável</td>
+                <td>Renda fixa bancária</td>
+                <td>Conferir prazo, taxa e garantia.</td>
+              </tr>
+              <tr>
+                <th>Tesouro IPCA+</th>
+                <td>Médio</td>
+                <td>Média</td>
+                <td>Objetivos longos</td>
+                <td>Oscila antes do vencimento.</td>
+              </tr>
+              <tr>
+                <th>Ações</th>
+                <td>Alto</td>
+                <td>Alta</td>
+                <td>Crescimento no longo prazo</td>
+                <td>Preço varia com mercado e empresas.</td>
+              </tr>
+              <tr>
+                <th>FIIs</th>
+                <td>Alto</td>
+                <td>Média</td>
+                <td>Renda recorrente</td>
+                <td>Vacância, juros e gestão afetam retorno.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section charts-section" id="graficos">
+        <div class="section-heading">
+          <p class="eyebrow">Gráficos da hora</p>
+          <h2>Visualize risco, retorno e composição da carteira</h2>
+          <p>
+            Os gráficos abaixo são didáticos e ajudam a enxergar relações que nem
+            sempre ficam claras em uma tabela.
+          </p>
+        </div>
+
+        <div class="charts-grid">
+          <article class="chart-card chart-card-wide">
+            <div class="chart-card-heading">
+              <div>
+                <p class="eyebrow">Mapa visual</p>
+                <h3>Risco x retorno potencial</h3>
+              </div>
+              <div class="chart-legend" aria-label="Legenda de risco">
+                <span><i class="legend-low"></i>Menor risco</span>
+                <span><i class="legend-medium"></i>Intermediário</span>
+                <span><i class="legend-high"></i>Maior risco</span>
+              </div>
+            </div>
+            <div class="canvas-frame">
+              <canvas id="riskReturnChart" width="900" height="430" aria-label="Gráfico de bolhas comparando risco e retorno"></canvas>
+            </div>
+          </article>
+
+          <article class="chart-card allocation-card">
+            <div class="chart-card-heading">
+              <div>
+                <p class="eyebrow">Carteiras exemplo</p>
+                <h3>Composição por perfil</h3>
+              </div>
+            </div>
+
+            <div class="allocation-controls" aria-label="Escolha o perfil da carteira">
+              <button type="button" class="active" data-allocation="conservador">Conservador</button>
+              <button type="button" data-allocation="moderado">Moderado</button>
+              <button type="button" data-allocation="arrojado">Arrojado</button>
+            </div>
+
+            <div class="canvas-frame doughnut-frame">
+              <canvas id="allocationChart" width="520" height="360" aria-label="Gráfico de rosca da carteira por perfil"></canvas>
+            </div>
+
+            <div class="allocation-list" id="allocationList" aria-live="polite"></div>
+          </article>
+
+          <article class="chart-card chart-card-wide">
+            <div class="chart-card-heading">
+              <div>
+                <p class="eyebrow">Comparação rápida</p>
+                <h3>Crescimento em cenários diferentes</h3>
+              </div>
+              <p class="chart-note">Exemplo com R$ 1.000 iniciais e R$ 200 por mês.</p>
+            </div>
+            <div class="canvas-frame">
+              <canvas id="scenarioBarsChart" width="900" height="430" aria-label="Gráfico de barras comparando cenários de crescimento"></canvas>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section tools-section" id="ferramentas">
+        <div class="section-heading">
+          <p class="eyebrow">Ferramentas práticas</p>
+          <h2>Calculadoras para transformar teoria em decisão</h2>
+          <p>
+            Use valores fictícios em sala para testar hipóteses, comparar cenários
+            e observar como prazo, taxa e inflação mudam o resultado.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-panel">
+            <div class="tool-heading">
+              <p class="eyebrow">Reserva de emergência</p>
+              <h3>Quanto guardar antes de investir com risco?</h3>
+            </div>
+
+            <form class="tool-form" id="reserveForm">
+              <label>
+                Gasto mensal
+                <input id="monthlyExpense" type="number" min="0" step="100" value="2500" />
+              </label>
+
+              <label>
+                Meses de segurança
+                <input id="reserveMonths" type="number" min="1" max="24" step="1" value="6" />
+              </label>
+
+              <label>
+                Valor já guardado
+                <input id="currentReserve" type="number" min="0" step="100" value="4000" />
+              </label>
+            </form>
+
+            <div class="tool-result" aria-live="polite">
+              <span>Reserva recomendada</span>
+              <strong id="reserveTarget">R$ 0,00</strong>
+              <p id="reserveStatus">Preencha os dados para ver o resultado.</p>
+              <div class="progress-track" aria-hidden="true">
+                <span id="reserveProgress"></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tool-panel">
+            <div class="tool-heading">
+              <p class="eyebrow">Simulador de objetivo</p>
+              <h3>Quanto investir por mês para chegar a uma meta?</h3>
+            </div>
+
+            <form class="tool-form" id="goalForm">
+              <label>
+                Meta financeira
+                <input id="goalTarget" type="number" min="0" step="500" value="20000" />
+              </label>
+
+              <label>
+                Valor inicial
+                <input id="goalInitial" type="number" min="0" step="100" value="1000" />
+              </label>
+
+              <label>
+                Prazo em meses
+                <input id="goalMonths" type="number" min="1" max="600" step="1" value="36" />
+              </label>
+
+              <label>
+                Taxa anual estimada (%)
+                <input id="goalRate" type="number" min="0" max="40" step="0.1" value="8" />
+              </label>
+            </form>
+
+            <div class="tool-result" aria-live="polite">
+              <span>Aporte mensal necessário</span>
+              <strong id="goalMonthly">R$ 0,00</strong>
+              <p id="goalSummary">A simulação aparecerá aqui.</p>
+            </div>
+          </article>
+
+          <article class="tool-panel inflation-panel">
+            <div class="tool-heading">
+              <p class="eyebrow">Comparador de inflação</p>
+              <h3>Quanto o dinheiro perde de poder de compra?</h3>
+            </div>
+
+            <form class="tool-form" id="inflationForm">
+              <label>
+                Valor de hoje
+                <input id="inflationAmount" type="number" min="0" step="50" value="1000" />
+              </label>
+
+              <label>
+                Inflação anual estimada (%)
+                <input id="inflationAnnual" type="number" min="0" max="30" step="0.1" value="4" />
+              </label>
+
+              <label>
+                Prazo em anos
+                <input id="inflationYears" type="number" min="1" max="50" step="1" value="10" />
+              </label>
+            </form>
+
+            <div class="inflation-bars" aria-label="Comparação visual da inflação">
+              <div>
+                <span>Hoje</span>
+                <strong id="todayPower">R$ 0,00</strong>
+                <i style="--bar-width: 100%"></i>
+              </div>
+              <div>
+                <span>No futuro, em valor real</span>
+                <strong id="futurePower">R$ 0,00</strong>
+                <i id="futurePowerBar" style="--bar-width: 70%"></i>
+              </div>
+            </div>
+
+            <p class="tool-note" id="inflationSummary">
+              A comparação mostra poder de compra, não rendimento.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section mistakes-section" id="erros">
+        <div class="section-heading">
+          <p class="eyebrow">Erros comuns</p>
+          <h2>Armadilhas que atrapalham iniciantes</h2>
+          <p>
+            Estes exemplos funcionam bem como discussão em grupo: o problema
+            raramente é só matemática, também envolve comportamento.
+          </p>
+        </div>
+
+        <div class="mistake-grid">
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Investir sem reserva</h3>
+            <p>Uma emergência pode obrigar o resgate no pior momento.</p>
+          </article>
+
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Colocar tudo em uma opção</h3>
+            <p>Concentração aumenta a dependência de um único resultado.</p>
+          </article>
+
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Olhar só a rentabilidade</h3>
+            <p>Taxas, impostos, liquidez e risco também importam.</p>
+          </article>
+
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Ignorar a inflação</h3>
+            <p>Ganhar em números pode não significar ganhar poder de compra.</p>
+          </article>
+
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Seguir promessa fácil</h3>
+            <p>Retorno alto, rápido e sem risco é sinal de alerta.</p>
+          </article>
+
+          <article class="mistake-card">
+            <span>!</span>
+            <h3>Confundir prazo com pressa</h3>
+            <p>Objetivos longos permitem estratégias diferentes dos objetivos curtos.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section simulator-section" id="simulador">
+        <div class="section-heading">
+          <p class="eyebrow">Juros compostos</p>
+          <h2>Simulação de rendimentos</h2>
+          <p>
+            Os valores são estimativas didáticas. Taxas reais variam, impostos podem
+            mudar o resultado e rendimento passado não garante rendimento futuro.
+          </p>
+        </div>
+
+        <div class="simulator">
+          <form class="sim-form" id="simForm">
+            <div class="scenario-row" aria-label="Cenários didáticos">
+              <button type="button" data-rate="6" data-scenario>Conservador</button>
+              <button type="button" data-rate="10" data-scenario>Moderado</button>
+              <button type="button" data-rate="14" data-scenario>Arrojado</button>
+            </div>
+
+            <label>
+              Valor inicial
+              <input id="initialAmount" type="number" min="0" step="100" value="1000" />
+            </label>
+
+            <label>
+              Aporte mensal
+              <input id="monthlyAmount" type="number" min="0" step="50" value="200" />
+            </label>
+
+            <label>
+              Taxa anual estimada (%)
+              <input id="annualRate" type="number" min="0" max="40" step="0.1" value="10" />
+            </label>
+
+            <label>
+              Prazo (anos)
+              <input id="years" type="number" min="1" max="50" step="1" value="10" />
+            </label>
+
+            <label>
+              Inflação anual estimada (%)
+              <input id="inflationRate" type="number" min="0" max="25" step="0.1" value="4" />
+            </label>
+          </form>
+
+          <div class="sim-output" aria-live="polite">
+            <div class="result-grid">
+              <article>
+                <span>Total investido</span>
+                <strong id="totalInvested">R$ 0,00</strong>
+              </article>
+              <article>
+                <span>Valor bruto</span>
+                <strong id="grossValue">R$ 0,00</strong>
+              </article>
+              <article>
+                <span>Rendimento</span>
+                <strong id="earnings">R$ 0,00</strong>
+              </article>
+              <article>
+                <span>Valor real estimado</span>
+                <strong id="realValue">R$ 0,00</strong>
+              </article>
+            </div>
+
+            <div class="chart-wrap">
+              <canvas id="growthChart" width="900" height="420" aria-label="Gráfico da evolução do patrimônio"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Projeto educacional. As informações não substituem orientação profissional
+        nem constituem recomendação de investimento.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
