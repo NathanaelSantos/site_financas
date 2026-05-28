@@ -176,9 +176,9 @@ function drawChart(history) {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, width, height);
 
-  ctx.strokeStyle = "#dce6e5";
+  ctx.strokeStyle = "#d9e1f5";
   ctx.lineWidth = 1;
-  ctx.fillStyle = "#5f7077";
+  ctx.fillStyle = "#5f6680";
   ctx.font = "12px Segoe UI, sans-serif";
 
   for (let i = 0; i <= 4; i += 1) {
@@ -192,9 +192,9 @@ function drawChart(history) {
     ctx.fillText(compactCurrency(value), 10, y + 4);
   }
 
-  drawLine(history, "invested", "#db6849", padding, plotWidth, plotHeight, maxValue, maxMonth);
-  drawLine(history, "balance", "#0d7777", padding, plotWidth, plotHeight, maxValue, maxMonth);
-  drawLine(history, "real", "#396ca8", padding, plotWidth, plotHeight, maxValue, maxMonth);
+  drawLine(history, "invested", "#ff6b6b", padding, plotWidth, plotHeight, maxValue, maxMonth);
+  drawLine(history, "balance", "#1d6fff", padding, plotWidth, plotHeight, maxValue, maxMonth);
+  drawLine(history, "real", "#2f6dff", padding, plotWidth, plotHeight, maxValue, maxMonth);
 
   drawLegend(width, height);
 }
@@ -220,9 +220,9 @@ function drawLine(history, key, color, padding, plotWidth, plotHeight, maxValue,
 
 function drawLegend(width, height) {
   const items = [
-    ["#0d7777", "Valor bruto"],
-    ["#db6849", "Total investido"],
-    ["#396ca8", "Valor real"],
+    ["#1d6fff", "Valor bruto"],
+    ["#ff6b6b", "Total investido"],
+    ["#2f6dff", "Valor real"],
   ];
 
   const startX = Math.max(18, width - 390);
@@ -235,7 +235,7 @@ function drawLegend(width, height) {
     const x = startX + index * 126;
     ctx.fillStyle = color;
     ctx.fillRect(x, y - 5, 18, 10);
-    ctx.fillStyle = "#14242b";
+    ctx.fillStyle = "#00052c";
     ctx.fillText(label, x + 24, y);
   });
 }
@@ -264,7 +264,7 @@ const riskAssets = [
     risk: 1.1,
     result: 1.9,
     size: 16,
-    color: "#4a965b",
+    color: "#21a86b",
     category: "Menor risco",
     description: "Alta liquidez, retorno menor e pouca oscilação.",
     labelDy: 20,
@@ -274,7 +274,7 @@ const riskAssets = [
     risk: 1.4,
     result: 3.0,
     size: 19,
-    color: "#4a965b",
+    color: "#21a86b",
     category: "Menor risco",
     description: "Boa referência para reserva e objetivos de curto prazo.",
     labelDy: 4,
@@ -284,7 +284,7 @@ const riskAssets = [
     risk: 2.4,
     result: 3.8,
     size: 21,
-    color: "#4a965b",
+    color: "#21a86b",
     category: "Menor risco",
     description: "Depende do emissor, liquidez e cobertura do FGC.",
     labelDy: -22,
@@ -294,7 +294,7 @@ const riskAssets = [
     risk: 2.8,
     result: 4.1,
     size: 18,
-    color: "#f0b64d",
+    color: "#f4c95d",
     category: "Intermediário",
     description: "Pode ter isenção de IR, mas costuma exigir prazo.",
     labelDy: 16,
@@ -304,7 +304,7 @@ const riskAssets = [
     risk: 4.3,
     result: 5.8,
     size: 23,
-    color: "#f0b64d",
+    color: "#f4c95d",
     category: "Intermediário",
     description: "Protege contra inflação quando levado ao vencimento.",
     labelDy: 0,
@@ -314,7 +314,7 @@ const riskAssets = [
     risk: 6.3,
     result: 6.8,
     size: 24,
-    color: "#396ca8",
+    color: "#2f6dff",
     category: "ETFs",
     description: "Diversificação em cesta de ativos com oscilação de mercado.",
   },
@@ -323,7 +323,7 @@ const riskAssets = [
     risk: 7.1,
     result: 7.2,
     size: 22,
-    color: "#db6849",
+    color: "#ff6b6b",
     category: "Maior risco",
     description: "Distribui rendimentos, mas sofre com vacância e juros.",
   },
@@ -332,7 +332,7 @@ const riskAssets = [
     risk: 8.7,
     result: 8.6,
     size: 28,
-    color: "#db6849",
+    color: "#ff6b6b",
     category: "Maior risco",
     description: "Maior potencial e maior volatilidade no curto prazo.",
   },
@@ -346,28 +346,28 @@ const allocationProfiles = {
   conservador: {
     title: "Conservador",
     items: [
-      { label: "Renda fixa pós-fixada", value: 55, color: "#0d7777" },
-      { label: "CDB/LCI/LCA", value: 25, color: "#4a965b" },
-      { label: "Tesouro IPCA+", value: 12, color: "#f0b64d" },
-      { label: "Renda variável", value: 8, color: "#db6849" },
+      { label: "Renda fixa pós-fixada", value: 55, color: "#1d6fff" },
+      { label: "CDB/LCI/LCA", value: 25, color: "#21a86b" },
+      { label: "Tesouro IPCA+", value: 12, color: "#f4c95d" },
+      { label: "Renda variável", value: 8, color: "#ff6b6b" },
     ],
   },
   moderado: {
     title: "Moderado",
     items: [
-      { label: "Renda fixa", value: 45, color: "#0d7777" },
-      { label: "Tesouro IPCA+", value: 20, color: "#f0b64d" },
-      { label: "ETFs e fundos", value: 20, color: "#396ca8" },
-      { label: "Ações e FIIs", value: 15, color: "#db6849" },
+      { label: "Renda fixa", value: 45, color: "#1d6fff" },
+      { label: "Tesouro IPCA+", value: 20, color: "#f4c95d" },
+      { label: "ETFs e fundos", value: 20, color: "#2f6dff" },
+      { label: "Ações e FIIs", value: 15, color: "#ff6b6b" },
     ],
   },
   arrojado: {
     title: "Arrojado",
     items: [
-      { label: "Renda fixa", value: 25, color: "#0d7777" },
-      { label: "ETFs", value: 25, color: "#396ca8" },
-      { label: "Ações", value: 30, color: "#db6849" },
-      { label: "FIIs e alternativos", value: 20, color: "#f0b64d" },
+      { label: "Renda fixa", value: 25, color: "#1d6fff" },
+      { label: "ETFs", value: 25, color: "#2f6dff" },
+      { label: "Ações", value: 30, color: "#ff6b6b" },
+      { label: "FIIs e alternativos", value: 20, color: "#f4c95d" },
     ],
   },
 };
@@ -427,8 +427,8 @@ function drawRiskReturnChart(progress = riskChartProgress) {
   const gradient = context.createLinearGradient(0, 0, width, height);
   const easedProgress = easeOutCubic(progress);
 
-  gradient.addColorStop(0, "#fbfffd");
-  gradient.addColorStop(1, "#ecf7f5");
+  gradient.addColorStop(0, "#ffffff");
+  gradient.addColorStop(1, "#f5f8ff");
   context.fillStyle = gradient;
   context.fillRect(0, 0, width, height);
 
@@ -437,9 +437,9 @@ function drawRiskReturnChart(progress = riskChartProgress) {
   context.clip();
 
   [
-    { start: 0, end: 3.3, color: "rgba(74, 150, 91, 0.1)" },
-    { start: 3.3, end: 6.6, color: "rgba(240, 182, 77, 0.13)" },
-    { start: 6.6, end: 10, color: "rgba(219, 104, 73, 0.11)" },
+    { start: 0, end: 3.3, color: "rgba(33, 168, 107, 0.1)" },
+    { start: 3.3, end: 6.6, color: "rgba(244, 201, 93, 0.13)" },
+    { start: 6.6, end: 10, color: "rgba(255, 107, 107, 0.11)" },
   ].forEach((zone) => {
     const x = padding.left + (zone.start / 10) * plotWidth;
     const zoneWidth = ((zone.end - zone.start) / 10) * plotWidth;
@@ -448,7 +448,7 @@ function drawRiskReturnChart(progress = riskChartProgress) {
     context.fillRect(x, padding.top, zoneWidth, plotHeight);
   });
 
-  context.strokeStyle = "rgba(95, 112, 119, 0.16)";
+  context.strokeStyle = "rgba(95, 102, 128, 0.16)";
   context.lineWidth = 1;
 
   for (let step = 0; step <= 5; step += 1) {
@@ -468,18 +468,18 @@ function drawRiskReturnChart(progress = riskChartProgress) {
 
   context.restore();
 
-  context.strokeStyle = "rgba(20, 36, 43, 0.18)";
+  context.strokeStyle = "rgba(0, 5, 44, 0.18)";
   context.lineWidth = 1.4;
   roundedRect(context, padding.left, padding.top, plotWidth, plotHeight, 10);
   context.stroke();
 
-  context.fillStyle = "#14242b";
+  context.fillStyle = "#00052c";
   context.font = "700 13px Segoe UI, sans-serif";
   context.textBaseline = "alphabetic";
   context.fillText("Retorno potencial", padding.left, 18);
   context.fillText("Risco", width - padding.right - 34, height - 16);
 
-  context.fillStyle = "rgba(20, 36, 43, 0.48)";
+  context.fillStyle = "rgba(0, 5, 44, 0.48)";
   context.font = "700 11px Segoe UI, sans-serif";
 
   for (let step = 0; step <= 5; step += 1) {
@@ -562,12 +562,12 @@ function drawRiskAssetLabel(context, asset, x, y, radius, isActive, width, heigh
 
   context.textBaseline = "middle";
   context.fillStyle = isActive ? "rgba(255, 255, 255, 0.94)" : "rgba(255, 255, 255, 0.76)";
-  context.strokeStyle = "rgba(20, 36, 43, 0.08)";
+  context.strokeStyle = "rgba(0, 5, 44, 0.08)";
   context.lineWidth = 1;
   roundedRect(context, textX - paddingX, textY - 12, textWidth + paddingX * 2, 24, 12);
   context.fill();
   context.stroke();
-  context.fillStyle = "#14242b";
+  context.fillStyle = "#00052c";
   context.fillText(label, textX, textY + 1);
   context.restore();
 }
@@ -726,12 +726,12 @@ function drawAllocationChart() {
   context.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
   context.fill();
 
-  context.fillStyle = "#14242b";
+  context.fillStyle = "#00052c";
   context.font = "900 19px Segoe UI, sans-serif";
   context.textAlign = "center";
   context.fillText(profile.title, centerX, centerY - 3);
   context.font = "700 12px Segoe UI, sans-serif";
-  context.fillStyle = "#5f7077";
+  context.fillStyle = "#5f6680";
   context.fillText("carteira exemplo", centerX, centerY + 18);
   context.textAlign = "left";
 
@@ -763,9 +763,9 @@ function drawScenarioBarsChart() {
 
   const { context, width, height } = setupCanvas(scenarioBarsCanvas);
   const scenarios = [
-    { label: "6% a.a.", rate: 0.06, color: "#4a965b" },
-    { label: "10% a.a.", rate: 0.1, color: "#f0b64d" },
-    { label: "14% a.a.", rate: 0.14, color: "#db6849" },
+    { label: "6% a.a.", rate: 0.06, color: "#21a86b" },
+    { label: "10% a.a.", rate: 0.1, color: "#f4c95d" },
+    { label: "14% a.a.", rate: 0.14, color: "#ff6b6b" },
   ];
   const years = [5, 10, 20];
   const values = years.map((year) =>
@@ -785,8 +785,8 @@ function drawScenarioBarsChart() {
 
   context.fillStyle = "#ffffff";
   context.fillRect(0, 0, width, height);
-  context.strokeStyle = "#dce6e5";
-  context.fillStyle = "#5f7077";
+  context.strokeStyle = "#d9e1f5";
+  context.fillStyle = "#5f6680";
   context.font = "12px Segoe UI, sans-serif";
 
   for (let step = 0; step <= 4; step += 1) {
@@ -813,7 +813,7 @@ function drawScenarioBarsChart() {
       context.fill();
     });
 
-    context.fillStyle = "#14242b";
+    context.fillStyle = "#00052c";
     context.font = "900 13px Segoe UI, sans-serif";
     context.textAlign = "center";
     context.fillText(`${years[groupIndex]} anos`, baseX, height - 34);
@@ -846,7 +846,7 @@ function drawScenarioLegend(context, scenarios, width, height) {
     const x = startX + index * 86;
     context.fillStyle = scenario.color;
     context.fillRect(x, y - 5, 16, 10);
-    context.fillStyle = "#14242b";
+    context.fillStyle = "#00052c";
     context.fillText(scenario.label, x + 22, y);
   });
 

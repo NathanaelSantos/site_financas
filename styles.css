@@ -1,16 +1,20 @@
 :root {
-  --ink: #14242b;
-  --muted: #5f7077;
-  --paper: #fbfaf7;
+  --navy: #00052c;
+  --navy-2: #071044;
+  --navy-3: #101a55;
+  --ink: #00052c;
+  --muted: #5f6680;
+  --paper: #f4f7ff;
   --surface: #ffffff;
-  --line: #dce6e5;
-  --teal: #0d7777;
-  --teal-strong: #085d63;
-  --green: #4a965b;
-  --gold: #f0b64d;
-  --coral: #db6849;
-  --blue: #396ca8;
-  --shadow: 0 18px 45px rgba(20, 36, 43, 0.12);
+  --line: #d9e1f5;
+  --teal: #1d6fff;
+  --teal-strong: #00052c;
+  --green: #21a86b;
+  --gold: #f4c95d;
+  --coral: #ff6b6b;
+  --blue: #2f6dff;
+  --cyan: #39d6ff;
+  --shadow: 0 18px 45px rgba(0, 5, 44, 0.12);
 }
 
 * {
@@ -24,7 +28,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--navy);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -54,8 +58,9 @@ button {
   justify-content: space-between;
   gap: 20px;
   padding: 14px clamp(18px, 4vw, 56px);
-  border-bottom: 1px solid rgba(220, 230, 229, 0.78);
-  background: rgba(251, 250, 247, 0.94);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 5, 44, 0.94);
   backdrop-filter: blur(18px);
 }
 
@@ -73,8 +78,8 @@ button {
   height: 34px;
   place-items: center;
   border-radius: 8px;
-  color: #fff;
-  background: var(--teal-strong);
+  color: var(--navy);
+  background: #ffffff;
 }
 
 .nav-links {
@@ -85,7 +90,7 @@ button {
   min-width: 0;
   overflow-x: auto;
   white-space: nowrap;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.76);
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -96,7 +101,7 @@ button {
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  color: var(--ink);
+  color: #ffffff;
   border-color: var(--gold);
 }
 
@@ -107,7 +112,7 @@ button {
   padding: clamp(96px, 17vh, 150px) clamp(20px, 6vw, 84px) clamp(52px, 8vh, 84px);
   color: #fff;
   background:
-    linear-gradient(90deg, rgba(7, 38, 45, 0.88), rgba(7, 38, 45, 0.48) 55%, rgba(7, 38, 45, 0.24)),
+    linear-gradient(90deg, rgba(0, 5, 44, 0.94), rgba(0, 5, 44, 0.66) 55%, rgba(0, 5, 44, 0.34)),
     url("assets/finance-hero.png") center / cover no-repeat;
 }
 
@@ -125,7 +130,7 @@ button {
 }
 
 .hero .eyebrow {
-  color: #ffdc8a;
+  color: var(--gold);
 }
 
 h1,
@@ -183,8 +188,8 @@ h3 {
 }
 
 .primary-action {
-  color: #10282d;
-  background: #ffdc8a;
+  color: var(--navy);
+  background: var(--gold);
 }
 
 .secondary-action {
@@ -246,6 +251,7 @@ h3 {
 
 .section {
   padding: clamp(72px, 10vw, 118px) clamp(18px, 5vw, 72px);
+  background: var(--paper);
 }
 
 .section-heading {
@@ -280,7 +286,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
-  box-shadow: 0 12px 30px rgba(20, 36, 43, 0.07);
+  box-shadow: 0 12px 30px rgba(0, 5, 44, 0.07);
 }
 
 .info-card {
@@ -371,7 +377,7 @@ h3 {
 .scenario-row button.active {
   color: #fff;
   border-color: var(--teal-strong);
-  background: var(--teal-strong);
+  background: var(--navy);
 }
 
 .quiz-result {
@@ -379,12 +385,12 @@ h3 {
   padding: 16px;
   border-radius: 8px;
   color: #fff;
-  background: linear-gradient(135deg, var(--teal-strong), #183b46);
+  background: linear-gradient(135deg, var(--navy), var(--navy-3));
 }
 
 .quiz-result span {
   display: block;
-  color: #ffdc8a;
+  color: var(--gold);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -401,7 +407,7 @@ h3 {
 }
 
 .investment-band {
-  background: #eef6f3;
+  background: #eef3ff;
 }
 
 .glossary-section {
@@ -435,7 +441,7 @@ h3 {
 }
 
 .timeline-section {
-  background: #f5f1ea;
+  background: #f6f8ff;
 }
 
 .timeline {
@@ -589,7 +595,7 @@ td {
 
 thead th {
   color: #fff;
-  background: var(--teal-strong);
+  background: var(--navy);
 }
 
 tbody th {
@@ -602,7 +608,9 @@ tbody tr:last-child td {
 }
 
 .charts-section {
-  background: #132f38;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(57, 214, 255, 0.13), transparent 34%),
+    var(--navy);
   color: #fff;
 }
 
@@ -611,7 +619,7 @@ tbody tr:last-child td {
 }
 
 .charts-section .eyebrow {
-  color: #ffdc8a;
+  color: var(--gold);
 }
 
 .charts-grid {
@@ -629,7 +637,7 @@ tbody tr:last-child td {
   border-radius: 8px;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
-    #173741;
+    var(--navy-2);
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
 }
 
@@ -708,8 +716,8 @@ tbody tr:last-child td {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 18% 12%, rgba(240, 182, 77, 0.16), transparent 28%),
-    linear-gradient(180deg, #ffffff, #f6faf9);
+    radial-gradient(circle at 18% 12%, rgba(244, 201, 93, 0.16), transparent 28%),
+    linear-gradient(180deg, #ffffff, #f5f8ff);
 }
 
 .canvas-frame canvas {
@@ -731,8 +739,8 @@ tbody tr:last-child td {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 8px;
   color: #ffffff;
-  background: rgba(20, 36, 43, 0.94);
-  box-shadow: 0 18px 38px rgba(20, 36, 43, 0.24);
+  background: rgba(0, 5, 44, 0.94);
+  box-shadow: 0 18px 38px rgba(0, 5, 44, 0.24);
   opacity: 0;
   pointer-events: none;
   transform: translate3d(14px, 14px, 0) scale(0.97);
@@ -796,9 +804,9 @@ tbody tr:last-child td {
 }
 
 .allocation-controls button.active {
-  color: #14313a;
-  border-color: #ffdc8a;
-  background: #ffdc8a;
+  color: var(--navy);
+  border-color: var(--gold);
+  background: var(--gold);
 }
 
 .allocation-list {
@@ -823,7 +831,7 @@ tbody tr:last-child td {
 }
 
 .tools-section {
-  background: #eef6f3;
+  background: #eef3ff;
 }
 
 .tools-grid {
@@ -869,7 +877,7 @@ tbody tr:last-child td {
 
 .tool-form input:focus {
   border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(13, 119, 119, 0.14);
+  box-shadow: 0 0 0 3px rgba(29, 111, 255, 0.14);
 }
 
 .tool-result {
@@ -905,7 +913,7 @@ tbody tr:last-child td {
   margin-top: 14px;
   overflow: hidden;
   border-radius: 999px;
-  background: #dbe8e4;
+  background: #dce5fb;
 }
 
 .progress-track span {
@@ -919,7 +927,7 @@ tbody tr:last-child td {
 
 .inflation-panel {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 251, 239, 0.96)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 255, 0.96)),
     var(--surface);
 }
 
@@ -987,7 +995,9 @@ tbody tr:last-child td {
 }
 
 .simulator-section {
-  background: #173741;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(57, 214, 255, 0.11), transparent 30%),
+    var(--navy);
   color: #fff;
 }
 
@@ -996,7 +1006,7 @@ tbody tr:last-child td {
 }
 
 .simulator-section .eyebrow {
-  color: #ffdc8a;
+  color: var(--gold);
 }
 
 .simulator {
@@ -1051,7 +1061,7 @@ tbody tr:last-child td {
 }
 
 .sim-form input:focus {
-  border-color: #ffdc8a;
+  border-color: var(--gold);
 }
 
 .sim-output {
@@ -1101,12 +1111,13 @@ canvas {
 .footer {
   padding: 30px clamp(18px, 5vw, 72px);
   text-align: center;
-  background: var(--paper);
+  background: var(--navy);
 }
 
 .footer p {
   max-width: 760px;
   margin-inline: auto;
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .ai-chatbot-button {
@@ -1123,8 +1134,8 @@ canvas {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 999px;
   color: #ffffff;
-  background: linear-gradient(135deg, #06196b 0%, var(--blue) 54%, var(--teal-strong) 100%);
-  box-shadow: 0 18px 44px rgba(20, 36, 43, 0.28);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 58%, var(--cyan) 100%);
+  box-shadow: 0 18px 44px rgba(0, 5, 44, 0.28);
   font-weight: 900;
   isolation: isolate;
   transition:
@@ -1147,11 +1158,11 @@ canvas {
 .ai-chatbot-button:hover,
 .ai-chatbot-button:focus-visible {
   transform: translateY(-3px);
-  box-shadow: 0 22px 54px rgba(20, 36, 43, 0.34);
+  box-shadow: 0 22px 54px rgba(0, 5, 44, 0.34);
 }
 
 .ai-chatbot-button:focus-visible {
-  outline: 3px solid rgba(240, 182, 77, 0.9);
+  outline: 3px solid rgba(244, 201, 93, 0.9);
   outline-offset: 4px;
 }
 
@@ -1164,7 +1175,7 @@ canvas {
   overflow: hidden;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: inset 0 0 0 2px rgba(255, 220, 138, 0.85);
+  box-shadow: inset 0 0 0 2px rgba(244, 201, 93, 0.85);
 }
 
 .ai-chatbot-avatar img {
