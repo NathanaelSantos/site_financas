@@ -471,8 +471,14 @@
                 <span><i class="legend-high"></i>Maior risco</span>
               </div>
             </div>
-            <div class="canvas-frame">
-              <canvas id="riskReturnChart" width="900" height="430" aria-label="Gráfico de bolhas comparando risco e retorno"></canvas>
+            <div class="canvas-frame risk-chart-frame">
+              <canvas
+                id="riskReturnChart"
+                width="900"
+                height="430"
+                aria-label="Gráfico interativo de bolhas comparando risco e retorno"
+              ></canvas>
+              <div class="risk-chart-tooltip" id="riskChartTooltip" role="status" aria-live="polite"></div>
             </div>
           </article>
 

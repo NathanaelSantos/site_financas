@@ -702,6 +702,7 @@ tbody tr:last-child td {
 }
 
 .canvas-frame {
+  position: relative;
   min-height: 330px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -714,6 +715,60 @@ tbody tr:last-child td {
 .canvas-frame canvas {
   width: 100%;
   height: 360px;
+}
+
+.risk-chart-frame canvas {
+  cursor: crosshair;
+}
+
+.risk-chart-tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: min(230px, calc(100% - 28px));
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  color: #ffffff;
+  background: rgba(20, 36, 43, 0.94);
+  box-shadow: 0 18px 38px rgba(20, 36, 43, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(14px, 14px, 0) scale(0.97);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.risk-chart-tooltip.visible {
+  opacity: 1;
+  transform: translate3d(var(--tooltip-x, 14px), var(--tooltip-y, 14px), 0) scale(1);
+}
+
+.risk-chart-tooltip strong,
+.risk-chart-tooltip span {
+  display: block;
+}
+
+.risk-chart-tooltip strong {
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.risk-chart-tooltip small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.76);
+  font-weight: 800;
+}
+
+.risk-chart-tooltip span {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .doughnut-frame {

@@ -253,20 +253,94 @@ function compactCurrency(value) {
 }
 
 const riskReturnCanvas = document.querySelector("#riskReturnChart");
+const riskTooltip = document.querySelector("#riskChartTooltip");
 const allocationCanvas = document.querySelector("#allocationChart");
 const scenarioBarsCanvas = document.querySelector("#scenarioBarsChart");
 const allocationList = document.querySelector("#allocationList");
 
 const riskAssets = [
-  { name: "Poupança", risk: 1.1, result: 1.9, size: 16, color: "#4a965b" },
-  { name: "Tesouro Selic", risk: 1.4, result: 3.0, size: 19, color: "#4a965b" },
-  { name: "CDB", risk: 2.4, result: 3.8, size: 21, color: "#4a965b" },
-  { name: "LCI/LCA", risk: 2.8, result: 4.1, size: 18, color: "#f0b64d" },
-  { name: "IPCA+", risk: 4.3, result: 5.8, size: 23, color: "#f0b64d" },
-  { name: "ETFs", risk: 6.3, result: 6.8, size: 24, color: "#396ca8" },
-  { name: "FIIs", risk: 7.1, result: 7.2, size: 22, color: "#db6849" },
-  { name: "Ações", risk: 8.7, result: 8.6, size: 28, color: "#db6849" },
+  {
+    name: "Poupança",
+    risk: 1.1,
+    result: 1.9,
+    size: 16,
+    color: "#4a965b",
+    category: "Menor risco",
+    description: "Alta liquidez, retorno menor e pouca oscilação.",
+    labelDy: 20,
+  },
+  {
+    name: "Tesouro Selic",
+    risk: 1.4,
+    result: 3.0,
+    size: 19,
+    color: "#4a965b",
+    category: "Menor risco",
+    description: "Boa referência para reserva e objetivos de curto prazo.",
+    labelDy: 4,
+  },
+  {
+    name: "CDB",
+    risk: 2.4,
+    result: 3.8,
+    size: 21,
+    color: "#4a965b",
+    category: "Menor risco",
+    description: "Depende do emissor, liquidez e cobertura do FGC.",
+    labelDy: -22,
+  },
+  {
+    name: "LCI/LCA",
+    risk: 2.8,
+    result: 4.1,
+    size: 18,
+    color: "#f0b64d",
+    category: "Intermediário",
+    description: "Pode ter isenção de IR, mas costuma exigir prazo.",
+    labelDy: 16,
+  },
+  {
+    name: "IPCA+",
+    risk: 4.3,
+    result: 5.8,
+    size: 23,
+    color: "#f0b64d",
+    category: "Intermediário",
+    description: "Protege contra inflação quando levado ao vencimento.",
+    labelDy: 0,
+  },
+  {
+    name: "ETFs",
+    risk: 6.3,
+    result: 6.8,
+    size: 24,
+    color: "#396ca8",
+    category: "ETFs",
+    description: "Diversificação em cesta de ativos com oscilação de mercado.",
+  },
+  {
+    name: "FIIs",
+    risk: 7.1,
+    result: 7.2,
+    size: 22,
+    color: "#db6849",
+    category: "Maior risco",
+    description: "Distribui rendimentos, mas sofre com vacância e juros.",
+  },
+  {
+    name: "Ações",
+    risk: 8.7,
+    result: 8.6,
+    size: 28,
+    color: "#db6849",
+    category: "Maior risco",
+    description: "Maior potencial e maior volatilidade no curto prazo.",
+  },
 ];
+
+let riskChartPoints = [];
+let activeRiskAsset = null;
+let riskChartProgress = 1;
 
 const allocationProfiles = {
   conservador: {
@@ -299,6 +373,12 @@ const allocationProfiles = {
 };
 
 let activeAllocation = "conservador";
+
+if (riskReturnCanvas) {
+  riskReturnCanvas.addEventListener("pointermove", updateRiskChartHover);
+  riskReturnCanvas.addEventListener("pointerleave", clearRiskChartHover);
+  riskReturnCanvas.addEventListener("blur", clearRiskChartHover);
+}
 
 document.querySelectorAll("[data-allocation]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -333,26 +413,43 @@ function drawFinanceCharts() {
   drawScenarioBarsChart();
 }
 
-function drawRiskReturnChart() {
+function drawRiskReturnChart(progress = riskChartProgress) {
   if (!riskReturnCanvas) {
     return;
   }
 
+  riskChartProgress = progress;
+
   const { context, width, height } = setupCanvas(riskReturnCanvas);
-  const padding = { top: 30, right: 26, bottom: 54, left: 58 };
+  const padding = { top: 34, right: 28, bottom: 60, left: 62 };
   const plotWidth = width - padding.left - padding.right;
   const plotHeight = height - padding.top - padding.bottom;
   const gradient = context.createLinearGradient(0, 0, width, height);
+  const easedProgress = easeOutCubic(progress);
 
-  gradient.addColorStop(0, "#ffffff");
-  gradient.addColorStop(1, "#eef8f5");
+  gradient.addColorStop(0, "#fbfffd");
+  gradient.addColorStop(1, "#ecf7f5");
   context.fillStyle = gradient;
   context.fillRect(0, 0, width, height);
 
-  context.strokeStyle = "#dce6e5";
+  context.save();
+  roundedRect(context, padding.left, padding.top, plotWidth, plotHeight, 10);
+  context.clip();
+
+  [
+    { start: 0, end: 3.3, color: "rgba(74, 150, 91, 0.1)" },
+    { start: 3.3, end: 6.6, color: "rgba(240, 182, 77, 0.13)" },
+    { start: 6.6, end: 10, color: "rgba(219, 104, 73, 0.11)" },
+  ].forEach((zone) => {
+    const x = padding.left + (zone.start / 10) * plotWidth;
+    const zoneWidth = ((zone.end - zone.start) / 10) * plotWidth;
+
+    context.fillStyle = zone.color;
+    context.fillRect(x, padding.top, zoneWidth, plotHeight);
+  });
+
+  context.strokeStyle = "rgba(95, 112, 119, 0.16)";
   context.lineWidth = 1;
-  context.fillStyle = "#5f7077";
-  context.font = "12px Segoe UI, sans-serif";
 
   for (let step = 0; step <= 5; step += 1) {
     const x = padding.left + (plotWidth / 5) * step;
@@ -369,29 +466,229 @@ function drawRiskReturnChart() {
     context.stroke();
   }
 
+  context.restore();
+
+  context.strokeStyle = "rgba(20, 36, 43, 0.18)";
+  context.lineWidth = 1.4;
+  roundedRect(context, padding.left, padding.top, plotWidth, plotHeight, 10);
+  context.stroke();
+
   context.fillStyle = "#14242b";
   context.font = "700 13px Segoe UI, sans-serif";
+  context.textBaseline = "alphabetic";
   context.fillText("Retorno potencial", padding.left, 18);
   context.fillText("Risco", width - padding.right - 34, height - 16);
 
+  context.fillStyle = "rgba(20, 36, 43, 0.48)";
+  context.font = "700 11px Segoe UI, sans-serif";
+
+  for (let step = 0; step <= 5; step += 1) {
+    const value = step * 2;
+    const x = padding.left + (plotWidth / 5) * step;
+    const y = padding.top + plotHeight - (plotHeight / 5) * step;
+
+    if (step > 0) {
+      context.fillText(String(value), x - 4, height - 38);
+      context.fillText(String(value), 36, y + 4);
+    }
+  }
+
+  riskChartPoints = [];
+
   riskAssets.forEach((asset) => {
     const x = padding.left + (asset.risk / 10) * plotWidth;
-    const y = padding.top + plotHeight - (asset.result / 10) * plotHeight;
+    const y = padding.top + plotHeight - ((asset.result * easedProgress) / 10) * plotHeight;
+    const isActive = activeRiskAsset?.name === asset.name;
+    const radius = asset.size * (0.68 + easedProgress * 0.32) + (isActive ? 4 : 0);
+    const haloRadius = radius + (isActive ? 13 : 8);
+    const fillGradient = context.createRadialGradient(
+      x - radius * 0.35,
+      y - radius * 0.45,
+      2,
+      x,
+      y,
+      radius,
+    );
 
+    riskChartPoints.push({ asset, x, y, radius: haloRadius });
+
+    context.save();
+    context.globalAlpha = 0.72 + easedProgress * 0.28;
     context.beginPath();
-    context.fillStyle = `${asset.color}33`;
-    context.arc(x, y, asset.size + 8, 0, Math.PI * 2);
+    context.fillStyle = hexToRgba(asset.color, isActive ? 0.26 : 0.16);
+    context.arc(x, y, haloRadius, 0, Math.PI * 2);
     context.fill();
 
+    context.shadowColor = hexToRgba(asset.color, 0.35);
+    context.shadowBlur = isActive ? 18 : 10;
+    context.shadowOffsetY = isActive ? 7 : 4;
+
     context.beginPath();
-    context.fillStyle = asset.color;
-    context.arc(x, y, asset.size, 0, Math.PI * 2);
+    fillGradient.addColorStop(0, hexToRgba(asset.color, 0.82));
+    fillGradient.addColorStop(1, asset.color);
+    context.fillStyle = fillGradient;
+    context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
 
-    context.fillStyle = "#14242b";
-    context.font = "800 12px Segoe UI, sans-serif";
-    context.fillText(asset.name, Math.min(x + asset.size + 7, width - 96), y + 4);
+    context.restore();
+
+    if (isActive) {
+      context.beginPath();
+      context.strokeStyle = "#ffffff";
+      context.lineWidth = 4;
+      context.arc(x, y, radius + 2, 0, Math.PI * 2);
+      context.stroke();
+      context.strokeStyle = asset.color;
+      context.lineWidth = 2;
+      context.stroke();
+    }
+
+    drawRiskAssetLabel(context, asset, x, y, radius, isActive, width, height);
   });
+
+  context.textAlign = "left";
+  context.textBaseline = "alphabetic";
+}
+
+function drawRiskAssetLabel(context, asset, x, y, radius, isActive, width, height) {
+  const label = asset.name;
+  const paddingX = 8;
+
+  context.save();
+  context.font = `${isActive ? "900" : "800"} 12px Segoe UI, sans-serif`;
+  const textWidth = context.measureText(label).width;
+  const textX = Math.max(72, Math.min(x + radius + 8, width - textWidth - paddingX - 18));
+  const textY = Math.max(26, Math.min(y + (asset.labelDy ?? -9), height - 32));
+
+  context.textBaseline = "middle";
+  context.fillStyle = isActive ? "rgba(255, 255, 255, 0.94)" : "rgba(255, 255, 255, 0.76)";
+  context.strokeStyle = "rgba(20, 36, 43, 0.08)";
+  context.lineWidth = 1;
+  roundedRect(context, textX - paddingX, textY - 12, textWidth + paddingX * 2, 24, 12);
+  context.fill();
+  context.stroke();
+  context.fillStyle = "#14242b";
+  context.fillText(label, textX, textY + 1);
+  context.restore();
+}
+
+function easeOutCubic(value) {
+  return 1 - Math.pow(1 - value, 3);
+}
+
+function hexToRgba(hex, alpha) {
+  const value = hex.replace("#", "");
+  const red = Number.parseInt(value.slice(0, 2), 16);
+  const green = Number.parseInt(value.slice(2, 4), 16);
+  const blue = Number.parseInt(value.slice(4, 6), 16);
+
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
+function findRiskAssetAtPoint(x, y) {
+  return riskChartPoints.reduce((closest, point) => {
+    const distance = Math.hypot(x - point.x, y - point.y);
+    const hitArea = point.radius + 8;
+
+    if (distance > hitArea) {
+      return closest;
+    }
+
+    if (!closest || distance < closest.distance) {
+      return { ...point, distance };
+    }
+
+    return closest;
+  }, null);
+}
+
+function updateRiskChartHover(event) {
+  if (!riskReturnCanvas) {
+    return;
+  }
+
+  const rect = riskReturnCanvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const point = findRiskAssetAtPoint(x, y);
+
+  riskReturnCanvas.style.cursor = point ? "pointer" : "crosshair";
+
+  if (!point) {
+    clearRiskChartHover();
+    return;
+  }
+
+  const shouldRedraw = activeRiskAsset?.name !== point.asset.name;
+  activeRiskAsset = point.asset;
+  showRiskTooltip(point.asset, x, y);
+
+  if (shouldRedraw) {
+    drawRiskReturnChart(1);
+  }
+}
+
+function showRiskTooltip(asset, x, y) {
+  if (!riskTooltip) {
+    return;
+  }
+
+  const title = document.createElement("strong");
+  const meta = document.createElement("small");
+  const description = document.createElement("span");
+
+  title.textContent = asset.name;
+  meta.textContent = `${asset.category} | Risco ${asset.risk.toFixed(1)}/10 | Retorno ${asset.result.toFixed(1)}/10`;
+  description.textContent = asset.description;
+  riskTooltip.replaceChildren(title, meta, description);
+
+  const frame = riskTooltip.parentElement;
+  const frameWidth = frame?.clientWidth || riskReturnCanvas.clientWidth;
+  const frameHeight = frame?.clientHeight || riskReturnCanvas.clientHeight;
+  const tooltipWidth = riskTooltip.offsetWidth || 230;
+  const tooltipHeight = riskTooltip.offsetHeight || 112;
+  const left = Math.min(Math.max(14, x + 18), frameWidth - tooltipWidth - 14);
+  const top = Math.min(Math.max(14, y + 18), frameHeight - tooltipHeight - 14);
+
+  riskTooltip.style.setProperty("--tooltip-x", `${left}px`);
+  riskTooltip.style.setProperty("--tooltip-y", `${top}px`);
+  riskTooltip.classList.add("visible");
+}
+
+function clearRiskChartHover() {
+  if (!activeRiskAsset && !riskTooltip?.classList.contains("visible")) {
+    return;
+  }
+
+  activeRiskAsset = null;
+  riskReturnCanvas.style.cursor = "crosshair";
+  riskTooltip?.classList.remove("visible");
+  drawRiskReturnChart(1);
+}
+
+function animateRiskReturnChart() {
+  if (!riskReturnCanvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    drawRiskReturnChart(1);
+    return;
+  }
+
+  const duration = 780;
+  let startTime = null;
+
+  function tick(timestamp) {
+    if (!startTime) {
+      startTime = timestamp;
+    }
+
+    const progress = Math.min(1, (timestamp - startTime) / duration);
+    drawRiskReturnChart(progress);
+
+    if (progress < 1) {
+      window.requestAnimationFrame(tick);
+    }
+  }
+
+  window.requestAnimationFrame(tick);
 }
 
 function drawAllocationChart() {
@@ -691,5 +988,7 @@ function updateInflation() {
 updateReserve();
 updateGoal();
 updateInflation();
-drawFinanceCharts();
+drawAllocationChart();
+drawScenarioBarsChart();
+animateRiskReturnChart();
 simulate();
