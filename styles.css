@@ -684,6 +684,10 @@ tbody tr:last-child td {
   background: var(--gold);
 }
 
+.legend-etf {
+  background: var(--blue);
+}
+
 .legend-high {
   background: var(--coral);
 }
